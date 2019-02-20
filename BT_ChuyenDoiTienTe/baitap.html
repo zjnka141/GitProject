@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Ứng dụng chuyển đổi tiền tệ</title>
+    </head>
+    <body>
+        <div style="width:960px;margin:auto;">
+            <table width="100%">
+                <tr>
+                    <td width="25%">Amount</td>
+                    <td width="25%">From Currency</td>
+                    <td width="25%">To Currency</td>
+                    <td width="25%" rowspan="2"><input type="button" value="Convert" onclick="convert();"></td>
+                </tr>
+                <tr>
+                    <td width="25%"><input type="text" id="amount"></td>
+                    <td width="25%"><select name="fromCur" id="fromCur">
+                        <option value="VND">VND</option>
+                        <option value="USD">USD</option>
+                        <option value="EUR">EUR</option>
+                    </select></td>
+                    <td width="25%"><select name="toCur" id="toCur"">
+                        <option value="VND">VND</option>
+                        <option value="USD">USD</option>
+                        <option value="EUR">EUR</option>
+                    </select></td>
+                    
+                </tr>
+            </table>
+            <h3>Result: <span id="result"></span></h3>
+        </div>
+        <script>
+            function convert(){
+                var amount=parseFloat(document.getElementById("amount").value);
+                var fromCur=document.getElementById("fromCur").value;
+                var toCur=document.getElementById("toCur").value;
+                var convertFormat={
+                    USD2VND:23200,
+                    EUR2VND:26400,
+                    VND2USD:1/23200,
+                    VND2EUR:1/26400,
+                    VND2VND:1,
+                    USD2USD:1,
+                    EUR2EUR:1
+                };
+                var convertString=fromCur+"2"+toCur;
+                document.getElementById("result").innerHTML=convertFormat[convertString]*amount;
+            }
+        </script>
+    </body>
+</html>
