@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Bài tập Sự kiện Click chuột</title>
+</head>
+
+<body>
+    <img src="1.jpg" alt="ball" style="position: relative;left: 0px;top:40px;border-radius:50%;" id="ball">
+    <br>
+    <br>
+    <br>
+    <hr>
+    <h3>Click button bellow to move the image to right</h3>
+    <input type="button" value="Click me" onclick="myMove()">
+    <script>
+        function myMove() {
+            var ball = document.getElementById("ball");
+            var pos = parseInt(ball.style.left);
+            var id = setInterval(frame,1);
+            var i=0;
+            var r=0;
+            function frame() {
+                if (i == 180) {
+                    clearInterval(id);
+                } else {
+                    i++;
+                    r+=2;
+                    ball.style.left = pos+ i  + 'px';
+                    ball.style.transform='rotate('+r+'deg)';
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>
