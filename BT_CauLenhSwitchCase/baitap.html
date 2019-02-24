@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Ứng dụng tính ngày trong tháng</title>
+</head>
+
+<body>
+    <br><br><br><br>
+    <div style="width: 500px;margin: auto;">
+        <span><input type="text" placeholder="Nhập tháng..." id="month"></span>
+        <span><input type="button" value="Tính số ngày" onclick="calDays()"></span>
+        <br>
+        <br>
+        <div id="result" style="color:tomato;"></div>
+    </div>
+    <script>
+        function calDays(){
+            var month=parseInt(document.getElementById("month").value);
+            var result=document.getElementById("result");
+            switch (month){
+                case 1:
+                case 3:
+                case 5:
+                case 7:
+                case 8:
+                case 10:
+                case 12:
+                    result.innerHTML="Tháng "+month+" có 31 ngày";
+                    break;
+                case 4:
+                case 6:
+                case 9:
+                case 11:
+                    result.innerHTML="Tháng "+month+" có 30 ngày";
+                    break;
+                case 2:
+                    result.innerHTML="Tháng "+month+" có 28 hoặc 29 ngày";
+                    break;
+                default:
+                    result.innerHTML="Giá trị bạn vừa nhập không phải là một tháng trong năm.<br>Vui lòng nhập lại !";
+            }
+        }
+    </script>
+</body>
+
+</html>
