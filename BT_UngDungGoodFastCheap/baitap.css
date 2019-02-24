@@ -1,0 +1,44 @@
+.to{
+    position: relative;
+    width:80px;
+    height:20px;
+    border:1px solid gray;
+    border-radius:999px;
+    background-color: gray;
+  }
+  .tron{
+    position:absolute;
+    top:0;
+    left:0;
+    width:20px;
+    height:20px;
+    border-radius:50%;
+    background-color: white;
+    z-index:2;
+    transition:1.2s;
+  }
+  .tron.truot{
+    transform:translateX(60px);
+  }
+  .xanh{
+    position:absolute;
+    top:0;
+    left:0;
+    width:80px;
+    height:20px;
+    border-radius:999px;
+    background-color: #2196F3;
+    
+    z-index:1;
+    opacity:0;
+    transition:1.2s;
+  }
+  .xanh.hien{
+    opacity:1;
+  }
+  .xanhla{
+    background-color: green;
+  }
+  .cam{
+    background-color: orange;
+  }
