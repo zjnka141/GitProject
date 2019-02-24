@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Bài tập sự kiện bàn phím</title>
+</head>
+
+<body onload="eventPress()">
+    <img src="1.png" alt="nobita" onclick="moveImg()" id="img1" style="position:absolute;left:0; top:0;">
+    <script>
+        function upPress() {
+            var anh = document.getElementById("img1");
+            anh.style.top = parseInt(anh.style.top) - 10 + 'px';
+        }
+        function downPress() {
+            var anh = document.getElementById("img1");
+            anh.style.top = parseInt(anh.style.top) + 10 + 'px';
+        }
+        function leftPress() {
+            var anh = document.getElementById("img1");
+            anh.style.left = parseInt(anh.style.left) - 10 + 'px';
+        }
+        function rightPress() {
+            var anh = document.getElementById("img1");
+            anh.style.left = parseInt(anh.style.left) + 10 + 'px';
+        }
+        function eventPress() {
+            window.addEventListener("keydown", function(event){
+                switch (event.keyCode) {
+                case 37:
+                    leftPress();
+                    break;
+                case 39:
+                    rightPress();
+                    break;
+                case 38:
+                    upPress();
+                    break;
+                case 40:
+                    downPress();
+                    break;
+            } 
+            });
+        }
+    </script>
+</body>
+
+</html>
