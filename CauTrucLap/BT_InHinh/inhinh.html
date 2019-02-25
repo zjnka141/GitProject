@@ -1,0 +1,66 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>In hình</title>
+</head>
+
+<body>
+    <br><br>
+    <div style="width:600px;text-align:center;margin: auto;" id="result">
+        <h3>Hình tam giác vuông</h3>
+        <div id="hinhtamgiac1" style="text-align:left; border:1px solid gray;width:100px; float:left;margin: 20px;">
+        </div>
+        <div id="hinhtamgiac2" style="text-align:right; border:1px solid gray;width:100px; float:left;margin: 20px;">
+        </div>
+        <div id="hinhtamgiac3" style="text-align:left; border:1px solid gray;width:100px; float:left;margin: 20px;">
+        </div>
+        <div id="hinhtamgiac4" style="text-align:right; border:1px solid gray;width:100px; float:left;margin: 20px;">
+        </div>
+        <div style="clear: both;"></div>
+        <hr>
+        <h3>Hình chữ nhật</h3>
+        <div id="hinhchunhat" style="text-align:center; border:1px solid gray;letter-spacing: 3px;"></div>
+    </div>
+    <script>
+        //Hình tam giác vuông
+        var t1 = "";
+        var t2 = "";
+        for (var i = 0; i < 5; i++) {
+            for (var j = 0; j < i + 1; j++) {
+                t1 += "*"
+            }
+            t1 += "<br>"
+        }
+        for (var i = 4; i > -1; i--) {
+            for (var j = 0; j < i + 1; j++) {
+                t2 += "*"
+            }
+            t2 += "<br>"
+        }
+        document.getElementById("hinhtamgiac1").innerHTML = t1;
+        document.getElementById("hinhtamgiac2").innerHTML = t1;
+        document.getElementById("hinhtamgiac3").innerHTML = t2;
+        document.getElementById("hinhtamgiac4").innerHTML = t2;
+
+        //Hình chữ nhật
+        var hcn = "";
+        for (var i = 0; i < 7; i++) {
+            if (i == 0 || i == 6) {
+                for (var j = 0; j < 26; j++) {
+                    hcn += "*";
+                }
+            } else{
+                hcn+="*";
+                for (var j = 0; j < 38; j++) {
+                    hcn += "&nbsp;";
+                }
+                hcn+="*";
+            }
+            hcn += "<br>";
+        }
+        document.getElementById("hinhchunhat").innerHTML = hcn;
+    </script>
+</body>
+
+</html>

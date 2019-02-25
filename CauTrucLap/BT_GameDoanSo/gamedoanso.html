@@ -1,0 +1,33 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Game đoán số</title>
+</head>
+
+<body>
+    <br><br>
+    <div style="width:600px;text-align:center;margin: auto;" id="result">
+        <input type="button" value="Chơi" style="width:100px;height: 50px;" onclick="playGame()">
+    </div>
+    <script>
+        function playGame(){
+            var number=parseInt(prompt("Nhập khoảng bạn muốn"));
+            var randomNum=Math.floor(Math.random()*number);
+            console.log(randomNum);
+            for(var i=0;i<3;i++){
+                var guessNum=parseInt(prompt("Nhập số dự đoán của bạn"));
+                if(guessNum==randomNum){
+                    alert("Chúc mừng! Bạn đã đoán đúng");
+                    break;
+                }else if(guessNum>randomNum){
+                    alert("Số bạn dự đoán đang cao hơn số random!");
+                }else{
+                    alert("Số bạn dự đoán đang thấp hơn số random!");
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>
