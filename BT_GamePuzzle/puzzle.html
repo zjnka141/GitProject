@@ -8,13 +8,13 @@
 </head>
 
 <body>
-    <div class="wrap">
+    <div id="wrap">
         <div id="part1" class="part" onclick="changePic(1)"></div>
         <div id="part2" class="part" onclick="changePic(2)"></div>
         <div id="part3" class="part" onclick="changePic(3)"></div>
         <div id="part4" class="part" onclick="changePic(4)"></div>
         <div id="part5" class="part" onclick="changePic(5)"></div>
-        <div id="done">Congulations</div>
+        <div id="done">congratulations</div>
     </div>
     <script>
         function changePic(a) {
@@ -38,6 +38,7 @@
                     picArray[i].style.border="0px";
                 }
                 document.getElementById("done").style.display="block";
+                document.getElementById("wrap").style.opacity="0.8";
 
             }
         }

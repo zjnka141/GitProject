@@ -1,7 +1,7 @@
 *{
     box-sizing: border-box;
 }
-.wrap{
+#wrap{
     width:495px;
     height: 750px;
     margin:auto;
@@ -28,10 +28,13 @@
     background: url("images/1.jpeg") no-repeat 0% 100%;
 }
 #done{
+    background-color:rgba(160, 204, 125, 0.38);
+    border-radius: 999px;
+    padding: 10px 20px;
     position: absolute;
     top: 60px;
-    left:700px;
-    color: brown;
+    left:675px;
+    color: rgb(204, 19, 19);
     font-size: 30px;
     display: none;
 }
