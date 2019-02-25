@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="1.css">
+    <title>Game Puzzle</title>
+</head>
+
+<body>
+    <div class="wrap">
+        <div id="part1" class="part" onclick="changePic(1)"></div>
+        <div id="part2" class="part" onclick="changePic(2)"></div>
+        <div id="part3" class="part" onclick="changePic(3)"></div>
+        <div id="part4" class="part" onclick="changePic(4)"></div>
+        <div id="part5" class="part" onclick="changePic(5)"></div>
+        <div id="done">Congulations</div>
+    </div>
+    <script>
+        function changePic(a) {
+            if (typeof changePic.counter == 'undefined') {
+                changePic.counter = 1;
+            }
+            changePic.counter < 4 ? changePic.counter += 1 : changePic.counter = 1;
+            var picPart = (document.getElementById("part" + a));
+            picPart.style.backgroundImage = "url('images/" + changePic.counter + ".jpeg')";
+            var picArray = document.getElementsByClassName("part");
+            var resultPic = "";
+            for (var i = 0; i < picArray.length; i++) {
+                var s = picArray[i].style.backgroundImage;
+                var patt1 = /\d/g;
+                var result = s.match(patt1);
+                resultPic += result[0];
+            }
+            if (resultPic == "11111" || resultPic == "22222" || resultPic == "33333" || resultPic == "44444") {
+                var picArray = document.getElementsByClassName("part");
+                for (var i = 0; i < picArray.length; i++) {
+                    picArray[i].style.border="0px";
+                }
+                document.getElementById("done").style.display="block";
+
+            }
+        }
+    </script>
+</body>
+
+</html>

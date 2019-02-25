@@ -1,0 +1,37 @@
+*{
+    box-sizing: border-box;
+}
+.wrap{
+    width:495px;
+    height: 750px;
+    margin:auto;
+    border: 1px solid orange;
+}
+.part{
+    width: auto;
+    height: 20%;
+    border: 1px solid white;
+}
+#part1{
+    background: url("images/1.jpeg") no-repeat 0% 0%;
+}
+#part2{
+    background: url("images/1.jpeg") no-repeat 0% 25%;
+}
+#part3{
+    background: url("images/1.jpeg") no-repeat 0% 50%;
+}
+#part4{
+    background: url("images/1.jpeg") no-repeat 0% 75%;
+}
+#part5{
+    background: url("images/1.jpeg") no-repeat 0% 100%;
+}
+#done{
+    position: absolute;
+    top: 60px;
+    left:700px;
+    color: brown;
+    font-size: 30px;
+    display: none;
+}
