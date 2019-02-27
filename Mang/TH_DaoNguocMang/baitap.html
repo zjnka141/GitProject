@@ -1,0 +1,33 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>In hình</title>
+</head>
+
+<body>
+    <br><br>
+    <div style="width:800px;text-align:center;margin: auto;" id="result">
+        <input type="text" placeholder="Nhập giá trị phần tử của mảng... " id="item" style="width:200px;">
+        <input type="button" value="Thêm vào mảng" onclick="addArray()">
+        <input type="button" value="Hiển thị kết quả" onclick="showArray()">
+        <h3 id="result1"></h3>
+        <br>
+        <h3 id="result2"></h3>
+    </div>
+    <script>
+        var arrayTest=new Array();
+        function addArray(){
+            var item=document.getElementById("item").value;
+            arrayTest.push(item);
+            document.getElementById("item").value="";
+        }
+        function showArray(){
+            document.getElementById("result1").innerHTML="Mảng trước khi sắp xếp :"+arrayTest;
+            arrayTest.sort(function(a,b){return b-a;});
+            document.getElementById("result2").innerHTML="Mảng sau khi sắp xếp :"+arrayTest;
+        }
+    </script>
+</body>
+
+</html>

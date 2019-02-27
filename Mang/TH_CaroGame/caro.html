@@ -1,0 +1,44 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Caro game</title>
+</head>
+
+<body onload="showArray()">
+    <br><br>
+    <div style="width:800px;text-align:center;margin: auto;">
+        <hr>
+        <h3 id="result" style="letter-spacing: 20px;"></h3>
+        <hr>
+        <input type="text" placeholder="X Position" id="xPos" style="width:80px;">
+        <input type="text" placeholder="Y Position" id="yPos" style="width:80px;">
+        <input type="button" value="Change value" onclick="changeValue()">
+    </div>
+    <script>
+        var a = new Array();
+        for (var i = 0; i < 5; i++) {
+            a[i] = new Array(0, 0, 0, 0, 0);
+        }
+        function showArray(){
+            var s = "";
+            for (var i = 0; i < 5; i++) {
+                for (var j = 0; j < 5; j++) {
+                    s += a[i][j];
+                }
+                s += "<br>"
+            }
+            document.getElementById("result").innerHTML = s;
+        }
+        function changeValue() {
+            xPos = parseInt(document.getElementById("xPos").value);
+            yPos = parseInt(document.getElementById("yPos").value);
+            a[xPos][yPos] = "x";
+            showArray();
+            document.getElementById("xPos").value="";
+            document.getElementById("yPos").value="";
+        }
+    </script>
+</body>
+
+</html>

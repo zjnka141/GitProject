@@ -1,0 +1,30 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Từ điển</title>
+</head>
+
+<body>
+    <br><br>
+    <div style="width:800px;text-align:center;margin: auto;">
+    </div>
+    <script>
+        var s = prompt("Nhập từ cần tra ");
+        var enArr=["table","chair","pencil","ruler"];
+        var viArr=["Cái bàn","Cái ghế","Bút chì","Thước"];
+        var found=false;
+        for(var i=0;i<enArr.length;i++){
+            if(enArr[i]==s){
+                alert(viArr[i]);
+                found=true;
+                break;
+            }
+        }
+        if(!found){
+            alert("Không tìm thấy");
+        }
+    </script>
+</body>
+
+</html>

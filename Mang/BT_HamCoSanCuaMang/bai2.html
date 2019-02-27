@@ -1,0 +1,26 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Bai 2</title>
+</head>
+
+<body onload="showArray()">
+    <br><br>
+    <div style="width:800px;text-align:center;margin: auto;">
+    </div>
+    <script>
+        var s = prompt("Nhập chuỗi số ");
+        var result = [s[0]];
+        for (var i = 1; i <= s.length; i++) {
+            if (s[i - 1] % 2 == 0 && s[i] % 2 == 0) {
+                result.push("-", s[i])
+            } else {
+                result.push(s[i]);
+            }
+        }
+        alert(result.join(''));
+    </script>
+</body>
+
+</html>
