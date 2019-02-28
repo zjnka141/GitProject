@@ -1,0 +1,52 @@
+*{
+    box-sizing: border-box;
+}
+.left{
+    width: 600px;
+    margin-left: 10px;
+}
+.wrap-add{
+    width: 100%;
+    padding: 20px 30px;
+    background-color: #F2F2F2;
+    border-radius:5px;
+}
+input[type="text"]{
+    width: 70%;
+    padding: 0 10px;
+    margin-right:20px;
+    height: 40px;
+    border: none;
+    border-radius:5px;
+}
+input[type="text"][id="editTxt"]{
+    width: 90%;
+    color: brown;
+    border: 1px solid lightseagreen !important;
+}
+input[type="button"], input[type="submit"]{
+    height: 40px;
+    width:80px;
+    background-color: #45A049;
+    color: white;
+    border: none;
+    border-radius:5px;
+    cursor: pointer;
+}
+input[value="Save"]{
+    background-color: rgb(78, 101, 235) !important;
+}
+input[value="X"]{
+    font-size: 20px;
+    background-color: rgb(182, 43, 25) !important;
+}
+table{
+    width: 100%;
+    border-spacing: 0;
+}
+table tr:nth-child(even){
+    background-color: #F2F2F2;
+}
+table tr td{
+    border: none;
+}

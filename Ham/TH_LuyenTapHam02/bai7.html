@@ -1,0 +1,26 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Convert temperature</title>
+</head>
+
+<body>
+    <br><br>
+    <div style="width:800px;text-align:center;margin: auto;">
+    </div>
+    <script>
+        var number={a:0,b:0};
+        number.a=prompt("Nhập số a");
+        number.b=prompt("Nhập số b");
+        swap(number);
+        alert("Sau khi swap: a="+number.a+" b="+number.b);
+        function swap(obj){
+            var temp=obj.a;
+            obj.a=obj.b;
+            obj.b=temp;
+        }
+    </script>
+</body>
+
+</html>

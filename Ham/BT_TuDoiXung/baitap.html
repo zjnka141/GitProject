@@ -1,0 +1,24 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Convert temperature</title>
+</head>
+
+<body>
+    <br><br>
+    <div style="width:800px;text-align:center;margin: auto;">
+    </div>
+    <script>
+        var s = prompt("Nhập từ cần kiểm tra");
+        var check = true;
+        for (var i = 0; i < s.length / 2; i++) {
+            if (s[i] != s[s.length-i-1]) {
+                check = false;
+            }
+        }
+        check ? alert("Đây là từ đối xứng") : alert("Đây không phải là từ đối xứng");
+    </script>
+</body>
+
+</html>

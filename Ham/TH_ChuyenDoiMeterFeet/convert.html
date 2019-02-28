@@ -1,0 +1,39 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Convert meter & feet</title>
+</head>
+
+<body>
+    <br><br>
+    <div style="width:800px;text-align:center;margin: auto;">
+        <div style="width:400px; float: left;">
+            <div style="display:inline-block; margin: 0 20px;">Meter</div>
+            <input type="text" oninput="convertToFeet(this.value)" />
+            <hr>
+            <div>Feet <span id="result1"></span></div>
+        </div>
+        <div style="width:400px; float: left;">
+            <div style="display:inline-block; margin: 0 20px;">Feet</div>
+            <input type="text" oninput="convertToMeter(this.value)" />
+            <hr>
+            <div>Meter <span id="result2"></span></div>
+        </div>
+
+    </div>
+    <script>
+        function convertToFeet(val){
+            var feet = 3.279 * val;
+            var elemResult=document.getElementById("result1");
+            isNaN(feet) ? elemResult.innerHTML = "" : elemResult.innerHTML = feet;
+        }
+        function convertToMeter(val){
+            var meter = 0.305 * val;
+            var elemResult=document.getElementById("result2");
+            isNaN(meter) ? elemResult.innerHTML = "" : elemResult.innerHTML = meter;
+        }
+    </script>
+</body>
+
+</html>
