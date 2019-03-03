@@ -1,0 +1,41 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Hình chữ nhật</title>
+</head>
+
+<body>
+    <canvas id="myCanvas"></canvas>
+    <div id="result" style="position:absolute;top:20px;left: 100px;"></div>
+    <script>
+        var canvas = document.getElementById("myCanvas");
+        canvas.width=window.innerWidth;
+        canvas.height=window.innerHeight;
+        var ctx = canvas.getContext("2d");
+        var w=parseInt(prompt("Enter width"))
+        var h=parseInt(prompt("Enter height"));
+        var rec=new rectangle(w,h);
+        rec.draw();
+        document.getElementById("result").innerHTML="Diện tích của HCN bên dưới là: "+rec.area()+"<br>"+
+        "Chu vi của HCN bên dưới là: "+rec.perimeter();
+        function rectangle(width, height) {
+            this.width = width;
+            this.height = height;
+            this.area = function () {
+                return this.width * this.height;
+            }
+            this.perimeter = function () {
+                return (this.width + this.height) / 2;
+            }
+            this.draw = function () {
+                ctx.fillStyle="red";
+                ctx.fillRect(100,100,this.width,this.height);
+                ctx.fillText(this.width+"px",this.width/2+80,90);
+                ctx.fillText(this.height+"px",60,this.height/2+100);
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,131 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Ứng dụng điện thoại</title>
+</head>
+
+<body>
+    <div style="width:600px;margin:auto;">
+        <div id="nokia" style="width:45%;margin-right: 5%;border: 1px solid red;float:left;text-align: center;">
+            <p style="color:rgb(25, 37, 209);font-weight: 800;">Nokia</p>
+            <span id="batteryNokia">100</span>%<br><br>
+            <input type="radio" name="statusNokia" value="on" checked onclick="nokia.changeStatus(this.value)">ON
+            <input type="radio" name="statusNokia" value="off" onclick="nokia.changeStatus(this.value)">OFF <br><br>
+            <textarea rows="3" cols="30" style="resize:none;" placeholder="Enter your message..." id="nokiaTxt"></textarea>
+            <br>
+            <input type="button" value="Send Message" onclick="sendMethod('nokiaTxt')"><br>
+            <hr>
+            <br>
+            <input type="button" value="Show Inbox" onclick="nokia.showInbox()">
+            <input type="button" value="Show sent message" onclick="nokia.showOutbox()">
+            <br><br>
+            <div id="resultNokia"></div>
+        </div>
+        <div id="iphone" style="width:45%;border: 1px solid red;;float:left;text-align: center;">
+            <p style="color:rgb(208, 15, 214);font-weight: 800;">iPhone</p>
+            <span id="batteryIphone">100</span>%<br><br>
+            <input type="radio" name="statusIphone" value="on" checked onclick="iphone.changeStatus(this.value)">ON
+            <input type="radio" name="statusIphone" value="off" onclick="iphone.changeStatus(this.value)">OFF <br><br>
+            <textarea rows="3" cols="30" style="resize:none;" placeholder="Enter your message..." id="iphoneTxt"></textarea>
+            <br>
+            <input type="button" value="Send Message" onclick="sendMethod('iphoneTxt')"><br>
+            <hr>
+            <br>
+            <input type="button" value="Show Inbox" onclick="iphone.showInbox()">
+            <input type="button" value="Show sent message"  onclick="iphone.showOutbox()">
+            <br><br>
+            <div id="resultNokia"></div>
+        </div>
+    </div>
+    <script>
+        var nokia = new MobileApp("Nokia");
+        var iphone = new MobileApp("iPhone");
+        document.addEventListener('click',function(event){
+            document.getElementById("batteryNokia").innerHTML=nokia.battery;
+            document.getElementById("batteryIphone").innerHTML=iphone.battery;
+        });
+        function sendMethod(txt){
+            var content=document.getElementById(txt).value;
+            if(txt=="nokiaTxt"){
+                nokia.writeMessage(content);
+                nokia.sendMessage(iphone);
+            }
+            if(txt=="iphoneTxt"){
+                iphone.writeMessage(content);
+                iphone.sendMessage(nokia);
+            }
+            document.getElementById(txt).value="";
+        }
+        function MobileApp(mobileName) {
+            this.battery = 100;
+            this.status = "on";
+            this.sendMess = [];
+            this.receiveMess = [];
+            this.writtingMess = "";
+            this.sourceMobile = "";
+            this.mobileName = mobileName;
+            this.changeStatus = function (status) {
+                this.status=status;
+                console.log(this.status);
+            }
+            this.writeMessage = function (message) {
+                if (this.status == "on") {
+                    this.battery--;
+                    this.writtingMess = message;
+                }
+            }
+            this.receiveMessage = function (sourceMobile, message) {
+                if (this.status == "on") {
+                    this.receiveMess.push(message);
+                    this.sourceMobile = sourceMobile;
+                }
+            }
+            this.sendMessage = function (destMobile) {
+                if (this.status == "on") {
+                    this.battery--;
+                    this.sendMess.push(this.writtingMess);
+                    destMobile.receiveMessage(this.mobileName, this.writtingMess);
+                }else{
+                    alert("The device is off");
+                }
+            }
+            this.charge = function () {
+                if (this.battery < 100) {
+                    this.battery++;
+                }
+            }
+            this.checkBattery = function () {
+                if (this.status == "on") {
+                    return this.battery;
+                }
+            }
+            this.showInbox=function(){
+                if (this.status == "on") {
+                    this.battery--;
+                    var s="";
+                    for(var i=0;i<this.receiveMess.length;i++){
+                        s+=i+"- "+this.receiveMess[i]+"\n";
+                    }
+                    alert(s);
+                }else{
+                    alert("The device is off");
+                }
+            }
+            this.showOutbox=function(){
+                if (this.status == "on") {
+                    this.battery--;
+                    var s="";
+                    for(var i=0;i<this.sendMess.length;i++){
+                        s+=i+"- "+this.sendMess[i]+"\n";
+                    }
+                    alert(s);
+                }else{
+                    alert("The device is off");
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

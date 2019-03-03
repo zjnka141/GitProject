@@ -1,0 +1,85 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Game đua xe</title>
+</head>
+
+<body>
+    <br>
+    <img id="carImg" src="car.png" alt="The Car" style="display:none;">
+    <div style="width:600px;text-align:center;font-size:20px;margin: auto;color: brown;" id="result">
+        <canvas id="myCanvas" width="400px" height="650px" style="background-color:black;float: left;"></canvas>
+        <div style="width:200px;height: 650px; background-color: gray; float: left;"></div>
+    </div>
+    <script>
+        var canvas = document.getElementById("myCanvas");
+        var ctx = canvas.getContext("2d");
+        var carImg = document.getElementById("carImg");
+        var dy = 5;
+        var car = new Car(100, 550, 8);
+        var line0 = new Line(195, -220, dy);
+        var line1 = new Line(195, 0, dy);
+        var line2 = new Line(195, 220, dy);
+        var line3 = new Line(195, 440, dy);
+        function Line(x, y, dy) {
+            this.x = x;
+            this.y = y;
+            this.dy = dy;
+            this.draw = function () {
+                ctx.fillStyle = "white";
+                ctx.fillRect(this.x, this.y, 5, 120);
+            }
+            this.update = function () {
+                this.y += this.dy;
+                if (this.y == 660) {
+                    this.y = -220;
+                }
+                this.draw();
+            }
+        }
+        function Car(x, y, dx) {
+            this.x = x;
+            this.y = y;
+            this.dx = dx;
+            this.draw = function () {
+                ctx.drawImage(carImg, this.x, this.y, 44, 100);
+            }
+            this.update = function (direct) {
+                if (direct == "right") {
+                    if (this.x < 356) {
+                        this.x += dx;
+                    }
+                }
+                if (direct == "left") {
+                    if (this.x > 0) {
+                        this.x -= dx;
+                    }
+                }
+                this.draw();
+            }
+        }
+        function animate() {
+            window.requestAnimationFrame(animate);
+            ctx.clearRect(0, 0, 400, 650);
+            line0.update();
+            line1.update();
+            line2.update();
+            line3.update();
+            car.draw();
+        }
+        window.addEventListener("keydown", function (event) {
+            switch (event.keyCode) {
+                case 39:
+                    car.update("right");
+                    break;
+                case 37:
+                    car.update("left");
+                    break;
+            }
+        });
+        animate();
+    </script>
+</body>
+
+</html>
