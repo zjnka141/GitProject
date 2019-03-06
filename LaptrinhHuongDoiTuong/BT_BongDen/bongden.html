@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+
+    <img id="lampOff" src="lamp_off.png" alt="The Lamp OFF" style="display: none;">
+    <img id="lampOn"src="lamp_on.png" alt="The Lamp ON" style="display: none;">
+    <canvas id="myCanvas" width="400" height="200" style="border:1px solid #d3d3d3;">
+    </canvas>
+
+    <script>
+        var mouseClick=0;
+        var canvas = document.getElementById("myCanvas");
+        var ctx = canvas.getContext("2d");
+        var lampOff = document.getElementById("lampOff");
+        var lampOn = document.getElementById("lampOn");
+        var lamp = new Lamp("off");
+        var button = new Button("off", lamp);
+        lamp.draw();
+        button.draw();
+        function Lamp(status) {
+            this.status = status;
+            this.draw = function () {
+                if (this.status == "on") {
+                    ctx.clearRect(0, 0, 180, 200);
+                    ctx.drawImage(lampOn, 10, 10);
+                } else {
+                    ctx.clearRect(0, 0, 180, 200);
+                    ctx.drawImage(lampOff, 25, 10);
+                }
+            }
+        }
+        function Button(status, lamp) {
+            this.status = status;
+            this.updateStatus = function (mouseClick) {
+                if(mouseClick%2==0){
+                    this.status="off";
+                }else{
+                    this.status="on";
+                }
+                lamp.status=this.status;
+                this.draw();
+                lamp.draw();
+            }
+            this.draw = function () {
+                if (this.status == "off") {
+                    ctx.font = "20px Arial";
+                    ctx.fillStyle = "gray";
+                    ctx.fillRect(200, 100, 100, 20);
+                    ctx.fillStyle = "white";
+                    ctx.fillText("OFF", 235, 120);
+                } else {
+                    ctx.font = "20px Arial";
+                    ctx.fillStyle = "red";
+                    ctx.fillRect(200, 100, 100, 20);
+                    ctx.fillStyle = "white";
+                    ctx.fillText("ON", 235, 120);
+                }
+            }
+        }
+        canvas.addEventListener("click", function (event) {
+            console.log(event.x+" "+event.y);
+            if(event.x<308 && event.x>208 && event.y >108 && event.y<128){
+                mouseClick++;
+                console.log(mouseClick);
+                button.updateStatus(mouseClick);
+            }
+        });
+        window.onload = function () {
+            ctx.drawImage(lampOff, 25, 10);
+        }
+    </script>
+
+</body>
+
+</html>
