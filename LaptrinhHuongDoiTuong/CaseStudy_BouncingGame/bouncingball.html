@@ -3,7 +3,7 @@
 
 <body>
     <br><br>
-    <div style="margin:auto;width:800px;height=600px">
+    <div style="margin:auto;width:800px;height:600px;">
         <canvas id="myCanvas" style="border:1px solid brown; background-color: black;">
         </canvas>
     </div>
@@ -68,14 +68,14 @@
                         this.dx = - this.dx;
                         this.dy = (this.y - (paddle1.y + PADDLE_HEIGHT / 2)) * 0.3;
                     } else{
-                        alert("lose");
+                        alert("LOSE");
                         run = false;
                     }
                 }
                 if (this.x > WIDTH-BALL_RADIUS) {
                     if (this.y + BALL_RADIUS > paddle2.y && this.y < paddle2.y + PADDLE_HEIGHT) {
                         this.dx = - this.dx;
-                        this.dy = (this.y - (paddle2.y + PADDLE_HEIGHT / 2)) * 0.3;
+                        this.dy = (this.y - (paddle2.y + PADDLE_HEIGHT / 2)) * 0.3+2;
                     } else{
                         alert("WIN");
                         run = false;
