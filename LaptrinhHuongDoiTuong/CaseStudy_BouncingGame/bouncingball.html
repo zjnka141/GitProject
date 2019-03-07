@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+    <br><br>
+    <div style="margin:auto;width:800px;height=600px">
+        <canvas id="myCanvas" style="border:1px solid brown; background-color: black;">
+        </canvas>
+    </div>
+
+    <script>
+        var run = true;
+        const WIDTH = 800;
+        const HEIGHT = 600;
+        const PADDLE_WIDTH = 10;
+        const PADDLE_HEIGHT = 100;
+        const BALL_RADIUS = 10;
+        var canvas = document.getElementById("myCanvas");
+        var ctx = canvas.getContext("2d");
+        canvas.width = WIDTH;
+        canvas.height = HEIGHT;
+        var paddle1 = new Paddle(0, HEIGHT / 2 - PADDLE_HEIGHT / 2);
+        var paddle2 = new Paddle(WIDTH - PADDLE_WIDTH, HEIGHT / 2 - PADDLE_HEIGHT / 2);
+        var ballDX = 5;
+        var ballDY = 5;
+        var ball = new Ball(PADDLE_WIDTH+BALL_RADIUS, HEIGHT / 2, ballDX, ballDY);
+        function Paddle(x, y) {
+            this.x = x;
+            this.y = y;
+            this.draw = function () {
+                if (this.y < 0) {
+                    this.y = 0;
+                }
+                if (this.y > HEIGHT - PADDLE_HEIGHT) {
+                    this.y = HEIGHT - PADDLE_HEIGHT;
+                }
+                ctx.fillStyle = "white";
+                ctx.fillRect(this.x, this.y, PADDLE_WIDTH, PADDLE_HEIGHT);
+            }
+            this.updateAI = function () {
+                var paddleYCenter = this.y + (PADDLE_HEIGHT / 2);
+                if (paddleYCenter < ball.y - 30) {
+                    this.y += 10;
+                } else if (paddleYCenter > ball.y + 30) {
+                    this.y -= 10;
+                }
+                this.draw();
+            }
+        }
+        function Ball(x, y, dx, dy) {
+            this.x = x;
+            this.y = y;
+            this.dx = dx;
+            this.dy = dy;
+            this.draw = function () {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, BALL_RADIUS, 0, Math.PI * 2, false);
+                ctx.fillStyle = "white";
+                ctx.fill();
+                ctx.stroke();
+            }
+            this.update = function () {
+                if (this.y > HEIGHT - BALL_RADIUS || this.y < 0) {
+                    this.dy = -this.dy;
+                }
+                if (this.x < PADDLE_WIDTH) {
+                    if (this.y + BALL_RADIUS > paddle1.y && this.y < paddle1.y + PADDLE_HEIGHT) {
+                        this.dx = - this.dx;
+                        this.dy = (this.y - (paddle1.y + PADDLE_HEIGHT / 2)) * 0.3;
+                    } else{
+                        alert("lose");
+                        run = false;
+                    }
+                }
+                if (this.x > WIDTH-BALL_RADIUS) {
+                    if (this.y + BALL_RADIUS > paddle2.y && this.y < paddle2.y + PADDLE_HEIGHT) {
+                        this.dx = - this.dx;
+                        this.dy = (this.y - (paddle2.y + PADDLE_HEIGHT / 2)) * 0.3;
+                    } else{
+                        alert("WIN");
+                        run = false;
+                    }
+                }
+                this.x += this.dx;
+                this.y += this.dy;
+                this.draw();
+            }
+        }
+
+
+        function animate() {
+            if (run) {
+                window.requestAnimationFrame(animate);
+                ctx.clearRect(0, 0, WIDTH, HEIGHT);
+                paddle1.draw();
+                paddle2.updateAI();
+                ball.update();
+            }
+        }
+        animate();
+        function calculateMousePos(event) {
+            var rect = canvas.getBoundingClientRect();
+            var root = document.documentElement;
+            var mouseX = event.clientX - rect.left - root.scrollLeft;
+            var mouseY = event.clientY - rect.top - root.scrollTop;
+            console.log(rect.left + " " + root.scrollLeft);
+            console.log(event.clientY + " " + rect.top + " " + root.scrollTop);
+            console.log(mouseX + " " + mouseY);
+            return {
+                x: mouseX,
+                y: mouseY
+            };
+        }
+        window.addEventListener("mousemove", function (event) {
+            var mousePos = calculateMousePos(event);
+            paddle1.y = mousePos.y - (PADDLE_HEIGHT / 2);
+        });
+    </script>
+
+</body>
+
+</html>
