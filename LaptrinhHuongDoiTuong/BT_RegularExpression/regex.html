@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Regular Expression</title>
+</head>
+
+<body>
+    <script>
+        // Validate Email: abc.123@gmail.com
+        var patternEmail = /^\w+(\.\w+)?@\w+\.[a-z]+$/gi;
+        var res = patternEmail.test("abc.123@gmail.com");
+        console.log(res);
+
+        // Validate account
+        var patternAccount = /^\w{6,}$/g;
+        var res = patternAccount.test("admin123");
+        console.log(res);
+
+        // Validate class name
+        var patternClass = /^[CAP]\d{4}[GHIKLM]$/g
+        var res = patternClass.test("C0318G");
+        console.log(res);
+
+        // Valide phone number
+        var patternPhone = /^\(\d{2}\)-\(0\d{9}\)$/g;
+        var res = patternPhone.test("(84)-(0978489648)");
+        console.log(res);
+
+        // Work with date
+        var nowDate = new Date();
+        var birthDay = new Date(1993, 0, 14);
+        var year=nowDate.getFullYear()-birthDay.getFullYear();
+        var miliSecond=nowDate.getTime()-birthDay.getTime();
+        var second=Math.floor(miliSecond/1000);
+        var minute=Math.floor(second/60);
+        var hour=Math.floor(minute/60);
+        var day=Math.floor(hour/24);
+        var month=Math.floor(day/30);
+        console.log(month+" months, "+day+" days, "+hour+" hours.");
+    </script>
+</body>
+
+</html>
